@@ -4,7 +4,7 @@
 Classifier::Classifier()
 : bias_(0)
 {
-	printf("Defalt Constructor of Classifier");
+	printf("Defalt Constructor of Classifier\n");
 }
 
 Classifier::~Classifier()

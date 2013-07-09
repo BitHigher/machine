@@ -12,9 +12,12 @@ LDA::LDA()
 void LDA::train(HFMatrix<double> *features, 
 					HFVector<int> *labels)
 {
-	ASSERT(features->num_rows == labels->size);
-	int size = features->num_rows;
-	int nfeat = features->num_cols;
+	print_matrix("Features", features->num_rows, features->num_cols,
+					features->matrix, features->num_rows);
+	
+	ASSERT(features->num_cols == labels->size);
+	int size = features->num_cols;
+	int nfeat = features->num_rows;
 
 	int num_neg = 0;
 	int num_pos = 0;
@@ -46,7 +49,7 @@ void LDA::train(HFMatrix<double> *features,
 	
 	for(int i = 0; i < num_pos; ++i)
 	{
-		double *row = features->get_row(poss[i]);
+		double *row = features->get_column(poss[i]);
 		for(int j = 0; j < nfeat; ++j)
 		{
 			pos_mean[j] += row[j];
@@ -70,7 +73,7 @@ void LDA::train(HFMatrix<double> *features,
 
 	for(int i = 0; i < num_neg; ++i)
 	{
-		double *row = features->get_row(negs[i]);
+		double *row = features->get_column(negs[i]);
 		for(int j = 0; j < nfeat; ++j)
 		{
 			neg_mean[j] += row[j];

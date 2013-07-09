@@ -48,11 +48,15 @@ void test_lda()
 	int lbls[10] = {-1, -1, 1, 1, -1, 1, 1, 1, -1, 1};
 
 
-	HFMatrix<double> features(feats, 10, 3);
+	HFMatrix<double> features(feats, 3, 10);
+	//Loader loader("data/hello_matrix");
+	//HFMatrix<double> features;
+	//features.load(loader);
+
 	HFVector<int> labels(lbls, 10);
 
-	Saver saver("hello_matrix");
-	features.save(saver);
+	//Saver saver("data/hello_matrix");
+	//features.save(saver);
 
 	LDA lda;	
 	lda.train(&features, &labels);
@@ -61,6 +65,8 @@ void test_lda()
 void test_perceptron()
 {
 	printf("[test perceptron]\n");
+	Perceptron p;
+
 }
 
 int main()
@@ -69,4 +75,6 @@ int main()
 	// test_matrix();
 
 	test_lda();
+
+	// test_perceptron();
 }

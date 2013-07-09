@@ -12,7 +12,7 @@ public:
 	HFMatrix(T *m, int nrows, int ncols);
 	void save(Saver &saver);
 	void load(Loader &loader);
-	T* get_row(int index);
+	T* get_column(int index);
 
 	static double* pinv(double *matrix, int rows, int cols);
 

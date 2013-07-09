@@ -26,7 +26,7 @@ HFVector<T>::HFVector(T *v, int size): vector(v), size(size) {
 template<class T>
 HFVector<T>::~HFVector()
 {
-	printf("FREE %p\n", vector);
+	printf("Vector Destroy %p\n", vector);
 /*
 	if(vector)
 	{

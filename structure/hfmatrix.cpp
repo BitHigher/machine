@@ -45,10 +45,10 @@ void HFMatrix<T>::load(Loader &loader)
 }
 
 template<class T>
-T* HFMatrix<T>::get_row(int index)
+T* HFMatrix<T>::get_column(int index)
 {
-	ASSERT(index >= 0 && index < num_rows);
-	return matrix+(index*num_cols);
+	ASSERT(index >= 0 && index < num_cols);
+	return matrix+(index*num_rows);
 }
 
 /*

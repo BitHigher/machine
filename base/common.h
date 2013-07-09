@@ -17,15 +17,10 @@
 #endif
 #endif
 
-#define DIE(err) { \
-	printf("[%s: line %d]: %s\n", __FILE__, __LINE__, err); \
-	exit(-1);	\
-}
-
-
 #define ASSERT(x){	\
 	if(HF_UNLIKELY(!(x))){ \
-		printf("Assertion %s failed in file %s line %d\n", \
+		printf("\033[1;31m[FATAL]\033[0m" \
+				":Assertion %s failed in file %s line %d\n", \
 				#x, __FILE__, __LINE__);	\
 		exit(-1); \
 	}	\
