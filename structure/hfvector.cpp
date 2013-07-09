@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <cblas.h>
-
+#include <iostream>
 
 template<class T>
 HFVector<T>::HFVector()
@@ -64,6 +64,19 @@ double HFVector<T>::dot(const double *v1, const double *v2, int size)
 {
 	double r = cblas_ddot(size, v1, 1, v2, 1);
 	return r;
+}
+
+template<class T>
+void HFVector<T>::display_vector(const char *desc)
+{
+	std::cout << '\n' << desc << '\n' << '[';
+	for(int i = 0; i < size-1; ++i)
+		std::cout << vector[i] << ',';
+
+	if(size > 0)
+		std::cout << vector[size-1];
+
+	std::cout << "]\n";
 }
 
 template class HFVector<int>;

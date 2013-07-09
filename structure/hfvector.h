@@ -19,7 +19,8 @@ public:
 	void save(Saver &saver);
 
 	static double dot(const double *v1, const double *v2, int size);
-
+	
+	void display_vector(const char *desc = "Vector");
 public:
 	T *vector;
 	int size;
