@@ -6,7 +6,13 @@
  *  y = +1 if w^Tx + b > 0
  *  y = -1 otherwise
  * 
+ * Update Strategy: 
+ *
+ * error = desired_value - result
+ * w += learn_rate * error * value
+ * b += learn_rate + desired_value
  * 
+ * w and value are vectors, value is the vector of input
  *
  */
 
