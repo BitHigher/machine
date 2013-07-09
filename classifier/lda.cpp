@@ -120,9 +120,12 @@ void LDA::train(HFMatrix<double> *features,
 	for(int i = 0; i < nfeat; ++i)
 		w_.vector[i] = w_pos[i] - w_neg[i];
 
+	bias_ = 0.5*(HFVector<double>::dot(w_neg, neg_mean, nfeat) -
+				 HFVector<double>::dot(w_pos, pos_mean, nfeat));
 
 	print_matrix("Weight", 1, nfeat, w_.vector, 1);
-	
+	printf("Bias: %lf\n", bias_);
+
 	// free memory
 	free(negs);
 	free(poss);

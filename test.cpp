@@ -4,6 +4,17 @@
 
 #include <cblas.h>
 
+void test_vector()
+{
+	printf("[test vector]\n");
+	
+	double v1[3] = {1, 2, 3};
+	double v2[3] = {4, 5, 6};
+
+	double r = HFVector<double>::dot(v1, v2, 3);
+	printf("DOT: %lf\n", r);
+}
+
 void test_matrix()
 {
 	printf("[test matrix]\n");
@@ -46,8 +57,8 @@ void test_lda()
 
 int main()
 {
+	// test_vector();
 	// test_matrix();
 
 	test_lda();
-
 }

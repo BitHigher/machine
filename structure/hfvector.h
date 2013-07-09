@@ -10,6 +10,8 @@ public:
 	HFVector(T *v, int size);
 	virtual ~HFVector();
 
+	static double dot(const double *v1, const double *v2, int size);
+
 public:
 	T *vector;
 	int size;

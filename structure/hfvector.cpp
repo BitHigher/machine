@@ -1,6 +1,8 @@
 #include "hfvector.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <cblas.h>
+
 
 template<class T>
 HFVector<T>::HFVector()
@@ -18,9 +20,7 @@ HFVector<T>::HFVector(int size)
 }
 
 template<class T>
-HFVector<T>::HFVector(T *v, int size)
-: vector(v), size(size)
-{
+HFVector<T>::HFVector(T *v, int size): vector(v), size(size) {
 }
 
 template<class T>
@@ -39,7 +39,12 @@ HFVector<T>::~HFVector()
 */
 }
 
-
+template<class T>
+double HFVector<T>::dot(const double *v1, const double *v2, int size)
+{
+	double r = cblas_ddot(size, v1, 1, v2, 1);
+	return r;
+}
 
 template class HFVector<int>;
 template class HFVector<double>;
