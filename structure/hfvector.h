@@ -8,7 +8,7 @@ public:
 	HFVector();
 	HFVector(int size);
 	HFVector(T *v, int size);
-//	~HFVector();
+	virtual ~HFVector();
 
 public:
 	T *vector;

@@ -114,7 +114,9 @@ void LDA::train(HFMatrix<double> *features,
 	cblas_dsymv(CblasColMajor, CblasUpper, nfeat, 1.0, inv_scatter, nfeat,
 				neg_mean, 1, 0.0, w_neg, 1);
 
+	printf("BEFORE\n");
 	w_ = HFVector<double>(nfeat);
+	printf("w_: %p\n", w_.vector);
 	for(int i = 0; i < nfeat; ++i)
 		w_.vector[i] = w_pos[i] - w_neg[i];
 

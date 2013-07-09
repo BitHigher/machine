@@ -2,8 +2,8 @@ FORTRAN = gfortran
 OPTS    = -O2
 CC      = g++
 CFLAGS  = -O3
-LOADER  = gfortran
-LFLAGS  = -llapacke -llapack -lrefblas -lcblas -lblas
+LOADER  = g++
+LFLAGS  = -llapacke -llapack -lrefblas -lcblas -lblas -lgfortran
 ALL		= test
 
 
@@ -14,6 +14,9 @@ linear: linear.o
 
 lls: lls.o
 	$(LOADER) $^ $(LFLAGS)  -o $@
+
+test_cpp: test_cpp.o
+	$(LOADER) $^ $(LFLAGS) -o $@
 
 test_math: test_math.o
 	$(LOADER) $^ $(LFLAGS) -o $@
