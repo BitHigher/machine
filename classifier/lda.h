@@ -18,6 +18,7 @@
  * Because S_w may be irreversible, so we use pseudoinverse 
  * 
  * w = S_w^+ (m_1 - m_2)
+ * b = 0.5*(m_2^T S_w^+ m_2 - m_1^T S_w^+ m_1)
  *
  */
 
