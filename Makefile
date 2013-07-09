@@ -9,22 +9,10 @@ ALL		= test
 
 all: $(ALL)
 
-linear: linear.o
-	$(LOADER) $^ $(LFLAGS)  -o $@
-
-lls: lls.o
-	$(LOADER) $^ $(LFLAGS)  -o $@
-
-test_cpp: test_cpp.o
+test: test.o lda.o classifier.o hfmatrix.o hfvector.o perceptron.o saver.o loader.o
 	$(LOADER) $^ $(LFLAGS) -o $@
 
-test_math: test_math.o
-	$(LOADER) $^ $(LFLAGS) -o $@
-
-test: test.o lda.o hfmatrix.o hfvector.o
-	$(LOADER) $^ $(LFLAGS) -o $@
-
-hfmatrix.o: structure/hfmatrix.cpp
+hfmatrix.o: structure/hfmatrix.cpp 
 	$(CC) -c -o $@ $^
 
 hfvector.o: structure/hfvector.cpp
@@ -36,7 +24,13 @@ saver.o: io/saver.cpp
 loader.o: io/loader.cpp
 	$(CC) -c -o $@ $^
 
+perceptron.o: classifier/perceptron.cpp
+	$(CC) -c -o $@ $^
+
 lda.o: classifier/lda.cpp
+	$(CC) -c -o $@ $^
+
+classifier.o: classifier/classifier.cpp
 	$(CC) -c -o $@ $^
 
 clean:

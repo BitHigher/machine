@@ -32,7 +32,6 @@ HFMatrix<T>::HFMatrix(T *m, int nrows, int ncols)
 {
 }
 
-/*
 template<class T>
 void HFMatrix<T>::save(Saver &saver)
 {
@@ -44,7 +43,6 @@ void HFMatrix<T>::load(Loader &loader)
 {
 	loader.load_matrix(matrix, num_rows, num_cols);
 }
-*/
 
 template<class T>
 T* HFMatrix<T>::get_row(int index)

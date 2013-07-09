@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "structure/hfmatrix.h"
 #include "classifier/lda.h"
+#include "classifier/perceptron.h"
 
 #include <cblas.h>
 
@@ -49,11 +50,18 @@ void test_lda()
 
 	HFMatrix<double> features(feats, 10, 3);
 	HFVector<int> labels(lbls, 10);
-	
+
+	Saver saver("hello_matrix");
+	features.save(saver);
+
 	LDA lda;	
 	lda.train(&features, &labels);
 }
 
+void test_perceptron()
+{
+	printf("[test perceptron]\n");
+}
 
 int main()
 {

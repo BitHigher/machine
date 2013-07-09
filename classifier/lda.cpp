@@ -6,7 +6,6 @@
 #include <lapacke.h>
 
 LDA::LDA()
-: bias_(0)
 {
 }
 
