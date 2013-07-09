@@ -50,11 +50,16 @@ void test_lda()
 
 	//HFMatrix<double> features(feats, 3, 10);
 	Loader loader("data/hello_matrix");
-	HFMatrix<double> features;
-	features.load(loader);
+	HFMatrix<double> features(loader);
 
 
-	HFVector<int> labels(lbls, 10);
+	//HFVector<int> labels(lbls, 10);
+	Loader loader2("data/hello_label");
+	HFVector<int> labels(loader2);
+	
+	
+	//Saver saver("data/hello_label");
+	//labels.save(saver);
 
 	//Saver saver("data/hello_matrix");
 	//features.save(saver);
@@ -69,7 +74,12 @@ void test_perceptron()
 
 	Loader loader("data/hello_matrix");
 	HFMatrix<double> features(loader);
+	
+	Loader lblLoader("data/hello_label");
+	HFVector<int> labels(lblLoader);
 
+	Perceptron p;
+	p.train(&features, &labels);
 }
 
 int main()
@@ -77,7 +87,7 @@ int main()
 	// test_vector();
 	// test_matrix();
 
-	//test_lda();
+	// test_lda();
 
 	test_perceptron();
 }

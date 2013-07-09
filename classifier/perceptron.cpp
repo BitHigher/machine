@@ -8,6 +8,7 @@ Perceptron::Perceptron()
 
 void Perceptron::train(HFMatrix<double> *features, HFVector<int> *labels)
 {
-	ASSERT(features->num_rows == labels->size);
+	ASSERT(features->num_cols == labels->size);	
+
 
 }
