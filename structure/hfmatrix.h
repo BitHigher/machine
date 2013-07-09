@@ -10,6 +10,8 @@ class HFMatrix
 public:
 	HFMatrix();
 	HFMatrix(T *m, int nrows, int ncols);
+	HFMatrix(Loader &loader);
+	
 	void save(Saver &saver);
 	void load(Loader &loader);
 	T* get_column(int index);

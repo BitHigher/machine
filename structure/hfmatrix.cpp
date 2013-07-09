@@ -33,6 +33,12 @@ HFMatrix<T>::HFMatrix(T *m, int nrows, int ncols)
 }
 
 template<class T>
+HFMatrix<T>::HFMatrix(Loader &loader)
+{
+	load(loader);
+}
+
+template<class T>
 void HFMatrix<T>::save(Saver &saver)
 {
 	saver.save_matrix(matrix, num_rows, num_cols);

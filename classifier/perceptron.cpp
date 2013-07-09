@@ -10,5 +10,4 @@ void Perceptron::train(HFMatrix<double> *features, HFVector<int> *labels)
 {
 	ASSERT(features->num_rows == labels->size);
 
-
 }

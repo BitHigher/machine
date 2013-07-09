@@ -66,7 +66,9 @@ void test_lda()
 void test_perceptron()
 {
 	printf("[test perceptron]\n");
-	Perceptron p;
+
+	Loader loader("data/hello_matrix");
+	HFMatrix<double> features(loader);
 
 }
 
@@ -75,7 +77,7 @@ int main()
 	// test_vector();
 	// test_matrix();
 
-	test_lda();
+	//test_lda();
 
-	// test_perceptron();
+	test_perceptron();
 }

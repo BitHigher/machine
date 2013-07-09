@@ -20,7 +20,15 @@ HFVector<T>::HFVector(int size)
 }
 
 template<class T>
-HFVector<T>::HFVector(T *v, int size): vector(v), size(size) {
+HFVector<T>::HFVector(T *v, int size)
+: vector(v), size(size)
+{
+}
+
+template<class T>
+HFVector<T>::HFVector(Loader &loader)
+{
+	load(loader);
 }
 
 template<class T>
@@ -37,6 +45,18 @@ HFVector<T>::~HFVector()
 	vector = NULL;
 	size = 0;
 */
+}
+
+template<class T>
+void HFVector<T>::save(Saver &saver)
+{
+	saver.save_vector(vector, size);
+}
+
+template<class T>
+void HFVector<T>::load(Loader &loader)
+{
+	loader.load_vector(vector, size);
 }
 
 template<class T>

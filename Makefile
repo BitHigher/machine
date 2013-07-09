@@ -18,8 +18,8 @@ hfmatrix.o: structure/hfmatrix.cpp
 hfvector.o: structure/hfvector.cpp
 	$(CC) -c -o $@ $^
 
-saver.o: io/saver.cpp
-	$(CC) -c -o $@ $^
+saver.o: io/saver.cpp io/saver.h
+	$(CC) -c -o $@ $<
 
 loader.o: io/loader.cpp
 	$(CC) -c -o $@ $^

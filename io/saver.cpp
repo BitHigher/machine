@@ -30,3 +30,21 @@ void Saver::save_matrix(double *matrix, int rows, int cols)
 		file_ << '\n';
 	}
 }
+
+void Saver::save_vector(double *vector, int size)
+{
+	ASSERT(file_.is_open());
+	
+	file_ << size << '\n';
+	for(int i = 0; i < size; ++i)
+		file_ << vector[i] << ' ';
+}
+
+void Saver::save_vector(int *vector, int size)
+{
+	ASSERT(file_.is_open());
+	
+	file_ << size << '\n';
+	for(int i = 0; i < size; ++i)
+		file_ << vector[i] << ' ';
+}

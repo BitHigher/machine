@@ -19,7 +19,7 @@ void Loader::load_matrix(double* &matrix, int &rows, int &cols)
 	ASSERT(file_.is_open());
 
 	file_ >> rows >> cols;
-	matrix = new double[rows*cols];
+	matrix = (double*)malloc(rows*cols*sizeof(double));
 
 	for(int i = 0; i < cols; ++i)
 	{
@@ -28,4 +28,26 @@ void Loader::load_matrix(double* &matrix, int &rows, int &cols)
 			file_ >> matrix[i*rows + j];
 		}
 	}
+}
+
+void Loader::load_vector(int* &vector, int &size)
+{
+	ASSERT(file_.is_open());
+
+	file_ >> size;
+	vector = (int*)malloc(size*sizeof(int));
+
+	for(int i = 0; i < size; ++i)
+		file_ >> vector[i];
+}
+
+void Loader::load_vector(double* &vector, int &size)
+{
+	ASSERT(file_.is_open());
+
+	file_ >> size;
+	vector = (double*)malloc(size*sizeof(double));
+
+	for(int i = 0; i < size; ++i)
+		file_ >> vector[i];
 }
