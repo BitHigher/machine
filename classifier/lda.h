@@ -1,8 +1,8 @@
 #ifndef CLASSIFIER_LDA_H
 #define CLASSIFIER_LDA_H
 
-/*
- * PLDA: Pseudoinverse Linear Discriminant Analysis
+/**
+ * PLDA: Pseudoinverse Linear Discriminant Analysis.
  *
  * S_i = (X_i - m_i)(X_i - m_i)^T
  * S_w = S_1 + S_2

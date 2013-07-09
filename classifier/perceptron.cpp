@@ -29,14 +29,14 @@ void Perceptron::train(HFMatrix<double> *features, HFVector<int> *labels)
 		{
 			double *col = features->get_column(i);
 			double y = HFVector<double>::dot(col, w_.vector, nfeat) + bias_;
-			double error = labels->vector[i] - HFMath::sign<double>(y);
+			double error = HFMath::sign<double>(y) - labels->vector[i];
 			if(error)
 			{
 				error_count += 1;
 				bias_ += learn_rate_ * labels->vector[i];
 				for(int j = 0; j < nfeat; ++j)
 				{
-					w_.vector[j] += learn_rate_ * (error) * col[j];
+					w_.vector[j] -= learn_rate_ * (error) * col[j];
 				}
 				w_.display_vector("Weight");
 			}	

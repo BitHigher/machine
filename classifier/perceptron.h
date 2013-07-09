@@ -1,18 +1,25 @@
 #ifndef CLASSIFIER_PERCEPTRON_H
 #define CLASSIFIER_PERCEPTRON_H
 
-/*
- * Perceptron:
- *  y = +1 if w^Tx + b > 0
- *  y = -1 otherwise
- * 
- * Update Strategy: 
+/**
+ * Perceptron, an implementation of online perceptron.
  *
- * error = desired_value - result
- * w += learn_rate * error * value
- * b += learn_rate + desired_value
+ * y = +1 if w^Tx + b > 0
+ * y = -1 otherwise
  * 
- * w and value are vectors, value is the vector of input
+ * Update Strategy: Gradient Descent
+ *
+ * h = w^Tx + b
+ * J = 0.5*(h-y)^2
+ * w = argmin_w J
+ *
+ * gradient = \frac{\delta J}{\delta w} = (h-y)*x
+ *
+ * error = h - y
+ * w -= learn_rate * error * x
+ * b += learn_rate + y
+ * 
+ * h is computed value and y is desired value
  *
  */
 
