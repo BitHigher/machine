@@ -1,6 +1,7 @@
 #include "saver.h"
 #include "../base/common.h"
 
+#include <iostream>
 
 Saver::Saver(const char *filename)
 {
@@ -24,7 +25,7 @@ void Saver::save_matrix(double *matrix, int rows, int cols)
 	{
 		for(int j = 0; j < rows; ++j)
 		{
-			file_ << matrix[i*cols+j] << ' ';
+			file_ << matrix[i*rows+j] << ' ';
 		}
 		file_ << '\n';
 	}

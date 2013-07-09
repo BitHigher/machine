@@ -48,10 +48,11 @@ void test_lda()
 	int lbls[10] = {-1, -1, 1, 1, -1, 1, 1, 1, -1, 1};
 
 
-	HFMatrix<double> features(feats, 3, 10);
-	//Loader loader("data/hello_matrix");
-	//HFMatrix<double> features;
-	//features.load(loader);
+	//HFMatrix<double> features(feats, 3, 10);
+	Loader loader("data/hello_matrix");
+	HFMatrix<double> features;
+	features.load(loader);
+
 
 	HFVector<int> labels(lbls, 10);
 
