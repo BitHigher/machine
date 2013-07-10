@@ -1,6 +1,8 @@
 #ifndef MATH_MATH_H
 #define MATH_MATH_H
 
+#include <math.h>
+
 class HFMath
 {
 public:
@@ -22,6 +24,18 @@ public:
 		if(a == 0)
 			return 0;
 		else return (a<0)? -1 : 1;
+	}
+
+	template<class T>
+	static inline T square(T x)
+	{
+		return x*x;
+	}
+
+	template<class T>
+	static inline T sqrt(T x)
+	{
+		return ::sqrt(x);
 	}
 };
 

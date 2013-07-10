@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "config.h"
+
 #if !defined(HF_UNLIKELY)
 #if __GNUC__ >= 3
 #define HF_UNLIKELY(expr) __builtin_expect(expr, 0)

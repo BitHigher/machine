@@ -9,7 +9,7 @@ ALL		= test
 
 all: $(ALL)
 
-test: test.o lda.o classifier.o hfmatrix.o hfvector.o perceptron.o saver.o loader.o
+test: test.o lda.o classifier.o hfmatrix.o hfvector.o perceptron.o saver.o loader.o kmeans.o parallel.o euclidean.o distance.o
 	$(LOADER) $^ $(LFLAGS) -o $@
 
 hfmatrix.o: structure/hfmatrix.cpp structure/hfmatrix.h
@@ -31,6 +31,18 @@ lda.o: classifier/lda.cpp classifier/lda.h
 	$(CC) -c -o $@ $<
 
 classifier.o: classifier/classifier.cpp classifier/classifier.h
+	$(CC) -c -o $@ $<
+
+kmeans.o: clustering/kmeans.cpp clustering/kmeans.h
+	$(CC) -c -o $@ $<
+
+parallel.o: base/parallel.cpp base/parallel.h
+	$(CC) -c -o $@ $<
+
+euclidean.o: distance/euclidean.cpp distance/euclidean.h
+	$(CC) -c -o $@ $<
+
+distance.o: distance/distance.cpp distance/distance.h
 	$(CC) -c -o $@ $<
 
 clean:

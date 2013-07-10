@@ -3,7 +3,44 @@
 #include "classifier/lda.h"
 #include "classifier/perceptron.h"
 
-#include <cblas.h>
+#include "base/config.h"
+#include "base/parallel.h"
+#include "distance/euclidean.h"
+
+void test_distance()
+{
+	printf("[test euclidean]\n");
+
+
+	double v1[3] = {1, 2, 3};
+	double v2[3] = {3, 1, 5};
+	
+	Euclidean e;
+	double result = e.distance(v1, v2, 3);
+
+	printf("Result: %lf\n", result);
+}
+
+
+void test_parallel()
+{
+	printf("[test parallel]\n");
+
+	Parallel p;
+	int cpus = p.get_num_cpus();
+	printf("CPUS: %d\n", cpus);
+}
+
+void test_kmeans()
+{
+	printf("[test kmeans]\n");
+
+#if defined(LINUX)
+	printf("LINUX\n");
+#elif defined(DARWIN)
+	printf("DARWIN\n");
+#endif
+}
 
 void test_vector()
 {
@@ -89,5 +126,11 @@ int main()
 
 	// test_lda();
 
-	test_perceptron();
+	// test_perceptron();
+
+	// test_kmeans();
+
+	// test_parallel();
+
+	test_distance();
 }
