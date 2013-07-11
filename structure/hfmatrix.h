@@ -15,9 +15,18 @@ public:
 	void save(Saver &saver);
 	void load(Loader &loader);
 	T* get_column(int index);
+	
+	void resize(int rows, int cols);
+
 
 	static double* pinv(double *matrix, int rows, int cols);
 
+	inline T& operator()(int row, int col)
+	{
+		return matrix[col*num_rows + row];
+	}
+
+	void display_matrix(const char *desc="Matix");
 
 public:
 	int num_rows;

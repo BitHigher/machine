@@ -5,6 +5,11 @@
 #include <unistd.h>
 #endif
 
+Parallel::Parallel()
+{
+	num_threads_ = get_num_cpus();
+}
+
 int Parallel::get_num_cpus() const
 {
 #if defined(LINUX) && defined(_SC_NPROCESSORS_ONLN)

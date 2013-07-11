@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <iostream>
 #include "structure/hfmatrix.h"
 #include "classifier/lda.h"
 #include "classifier/perceptron.h"
@@ -7,18 +8,27 @@
 #include "base/parallel.h"
 #include "distance/euclidean.h"
 
+extern void init();
+
 void test_distance()
 {
 	printf("[test euclidean]\n");
 
+	double m1[3*2] = {1, 2, 3, 4, 5, 6};
+	double m2[3*4] = {1, 2, 3, 1, 2, 3, 4, 5, 6, 4, 5, 6};
+	
 
-	double v1[3] = {1, 2, 3};
-	double v2[3] = {3, 1, 5};
+	init();
 	
 	Euclidean e;
-	double result = e.distance(v1, v2, 3);
+	e.set_left(HFMatrix<double>(m1, 3, 2));
+	e.set_right(HFMatrix<double>(m2, 3, 4));
 
-	printf("Result: %lf\n", result);
+	e.distances();
+	
+	std::cout << "Compute Finished\n";
+
+	e.result_.display_matrix();
 }
 
 

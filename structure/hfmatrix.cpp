@@ -2,6 +2,7 @@
 #include "../base/common.h"
 #include "../math/hfmath.h"
 
+#include <iostream>
 #include <stdlib.h>
 #include <lapacke.h>
 #include <cblas.h>
@@ -108,6 +109,45 @@ double* HFMatrix<T>::pinv(double *matrix, int rows, int cols)
 	free(sb);
 
 	return result;
+}
+
+template<class T>
+void HFMatrix<T>::resize(int rows, int cols)
+{
+	num_rows = num_cols = 0;
+	free(matrix);
+	matrix = (T*)malloc(rows*cols*sizeof(T));
+	num_rows = rows;
+	num_cols = cols;
+}
+
+
+template<class T>
+void HFMatrix<T>::display_matrix(const char *desc)
+{
+	std::cout << "\n" << desc << ":\n[";
+	int i, j;
+	for(i = 0; i < num_rows-1; ++i)
+	{
+		std::cout << '[';
+		for(j = 0; j < num_cols-1; ++j)
+			std::cout << matrix[j*num_rows+i] << ',';
+		if(num_cols > 0)
+			std::cout << matrix[j*num_rows+i];
+		std::cout << "],\n";
+	}
+
+	if(num_rows > 0)
+	{
+		std::cout << '[';
+		for(j = 0; j < num_cols-1; ++j)
+			std::cout << matrix[j*num_rows+i] << ',';
+		if(num_cols > 0)
+			std::cout << matrix[j*num_rows+i];
+		std::cout << "]";
+	}
+	
+	std::cout << "]\n";
 }
 
 template class HFMatrix<double>;

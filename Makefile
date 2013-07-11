@@ -3,13 +3,13 @@ OPTS    = -O2
 CC      = g++
 CFLAGS  = -O3
 LOADER  = g++
-LFLAGS  = -llapacke -llapack -lrefblas -lcblas -lblas -lgfortran
+LFLAGS  = -llapacke -llapack -lrefblas -lcblas -lblas -lgfortran -lpthread
 ALL		= test
 
 
 all: $(ALL)
 
-test: test.o lda.o classifier.o hfmatrix.o hfvector.o perceptron.o saver.o loader.o kmeans.o parallel.o euclidean.o distance.o
+test: test.o lda.o classifier.o hfmatrix.o hfvector.o perceptron.o saver.o loader.o kmeans.o parallel.o euclidean.o distance.o init.o
 	$(LOADER) $^ $(LFLAGS) -o $@
 
 hfmatrix.o: structure/hfmatrix.cpp structure/hfmatrix.h
@@ -43,6 +43,9 @@ euclidean.o: distance/euclidean.cpp distance/euclidean.h
 	$(CC) -c -o $@ $<
 
 distance.o: distance/distance.cpp distance/distance.h
+	$(CC) -c -o $@ $<
+
+init.o: init.cpp
 	$(CC) -c -o $@ $<
 
 clean:

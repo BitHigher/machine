@@ -10,6 +10,8 @@
 class Parallel
 {
 public:
+	Parallel();
+	
 	int get_num_cpus() const;
 	
 	int get_num_threads() const;
