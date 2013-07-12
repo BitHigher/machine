@@ -2,6 +2,8 @@
 #define MATH_MATH_H
 
 #include <math.h>
+#include <time.h>
+#include <stdlib.h>
 
 class HFMath
 {
@@ -36,6 +38,17 @@ public:
 	static inline T sqrt(T x)
 	{
 		return ::sqrt(x);
+	}
+
+	static inline double random()
+	{
+		return rand()/(RAND_MAX+1.0);
+	}
+
+	static inline int random(int min_val, int max_val)
+	{
+		int ret = min_val + (int)(max_val-min_val+1)*random();
+		return ret;
 	}
 };
 

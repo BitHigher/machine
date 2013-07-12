@@ -79,5 +79,26 @@ void HFVector<T>::display_vector(const char *desc)
 	std::cout << "]\n";
 }
 
+template<class T>
+void HFVector<T>::resize(int s)
+{
+	if(size != s)
+	{
+		size = 0;
+		if(vector)
+			free(vector);
+		
+		vector = (T*)malloc(sizeof(T)*s);
+		size = s;
+	}
+}
+
+template<class T>
+void HFVector<T>::set_const(T val)
+{
+	for(int i = 0; i < size; ++i)
+		vector[i] = val;
+}
+
 template class HFVector<int>;
 template class HFVector<double>;

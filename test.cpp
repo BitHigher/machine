@@ -7,8 +7,42 @@
 #include "base/config.h"
 #include "base/parallel.h"
 #include "distance/euclidean.h"
+#include "math/hfmath.h"
+
+#include "clustering/kmeans.h"
 
 extern void init();
+
+void gen_vertices()
+{
+	double *data = new double[3*1000];
+
+	srand(time(0));
+
+	for(int i = 0; i < 3*1000; ++i)
+	{
+		data[i] = HFMath::random(0, 100);
+		std::cout << "DATA: " << data[i] << '\n';
+	}
+
+	HFMatrix<double> matrix(data, 3, 1000);
+	Saver saver("data/kmeans");
+	matrix.save(saver);
+}
+
+
+
+void test_kmeans()
+{
+	printf("[test kmeans]\n");
+	
+	Loader loader("data/kmeans");
+	HFMatrix<double> matrix(loader);
+
+	KMeans kmeans;
+	kmeans.set_distance(new Euclidean);
+	kmeans.cluster(&matrix, 5);
+}
 
 void test_distance()
 {
@@ -39,17 +73,6 @@ void test_parallel()
 	Parallel p;
 	int cpus = p.get_num_cpus();
 	printf("CPUS: %d\n", cpus);
-}
-
-void test_kmeans()
-{
-	printf("[test kmeans]\n");
-
-#if defined(LINUX)
-	printf("LINUX\n");
-#elif defined(DARWIN)
-	printf("DARWIN\n");
-#endif
 }
 
 void test_vector()
@@ -142,5 +165,7 @@ int main()
 
 	// test_parallel();
 
-	test_distance();
+	// test_distance();
+
+	test_kmeans();
 }

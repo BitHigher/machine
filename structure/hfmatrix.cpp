@@ -114,11 +114,19 @@ double* HFMatrix<T>::pinv(double *matrix, int rows, int cols)
 template<class T>
 void HFMatrix<T>::resize(int rows, int cols)
 {
-	num_rows = num_cols = 0;
-	free(matrix);
-	matrix = (T*)malloc(rows*cols*sizeof(T));
-	num_rows = rows;
-	num_cols = cols;
+	if(rows*cols == num_rows*num_cols)
+	{
+		num_rows = rows;
+		num_cols = cols;
+	}
+	else
+	{
+		num_rows = num_cols = 0;
+		if(matrix)
+			free(matrix);	
+		matrix = (T*)malloc(rows*cols*sizeof(T));
+		num_rows = rows;
+	}	num_cols = cols;
 }
 
 
@@ -148,6 +156,49 @@ void HFMatrix<T>::display_matrix(const char *desc)
 	}
 	
 	std::cout << "]\n";
+}
+
+template<class T>
+void HFMatrix<T>::set_const(T val)
+{
+	for(int i = 0; i < num_rows*num_cols; ++i)
+		matrix[i] = val;
+}
+
+// allowed difference +/- 0.0001
+template<class T>
+bool HFMatrix<T>::equals(const HFMatrix<T> &that) const
+{
+	if((num_rows != that.num_rows) ||
+		(num_cols != that.num_cols))
+		return false;
+
+	double diff = 0;
+	double threshold = 0; // 0.0001;
+	for(int i = 0; i < num_rows*num_cols; ++i)
+	{
+		diff = matrix[i] - that.matrix[i];
+		if(diff > threshold || diff < -threshold)
+			return false;
+	}
+
+	return true;
+}
+
+template<class T>
+bool HFMatrix<T>::operator==(const HFMatrix<T> &that) const
+{
+	return ((num_rows == that.num_rows) &&
+			(num_cols == that.num_cols) &&
+			(matrix == that.matrix));
+}
+
+template<class T>
+void HFMatrix<T>::copy(const HFMatrix<T> &that)
+{
+	resize(that.num_rows, that.num_cols);
+	for(int i = 0; i < num_rows*num_cols; ++i)
+		matrix[i] = that.matrix[i];
 }
 
 template class HFMatrix<double>;

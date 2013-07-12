@@ -18,6 +18,8 @@ public:
 	void load(Loader &loader);
 	void save(Saver &saver);
 
+	void resize(int size);
+	void set_const(T val);
 	static double dot(const double *v1, const double *v2, int size);
 	
 	void display_vector(const char *desc = "Vector");

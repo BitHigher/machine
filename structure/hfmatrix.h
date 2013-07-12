@@ -17,7 +17,7 @@ public:
 	T* get_column(int index);
 	
 	void resize(int rows, int cols);
-
+	void set_const(T val);
 
 	static double* pinv(double *matrix, int rows, int cols);
 
@@ -26,8 +26,15 @@ public:
 		return matrix[col*num_rows + row];
 	}
 
-	void display_matrix(const char *desc="Matix");
+	// compare pointer
+	bool operator==(const HFMatrix<T> &that) const;
+	// compare content
+	bool equals(const HFMatrix<T> &that) const;
+	
+	void copy(const HFMatrix<T> &that);
 
+
+	void display_matrix(const char *desc="Matix");
 public:
 	int num_rows;
 	int num_cols;
